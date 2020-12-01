@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title>Calculator App</title>
+
+	<!-- Bootstrap -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+
+</head>
+<body>
+
+	<div id="calculator_frame">
+		
+		<input 
+			type="text" 
+			id="result" 
+			placeholder="0" 
+		>
+
+		<div id="buttons_grid">
+
+			<div id="buttons_grid_rows">
+
+				<button id="button_delete" onclick="calculate('action', 'c')">C</button>
+				<button class="button" onclick="calculate('action', '/')">/</button>
+				<button class="button" onclick="calculate('action', '*')">x</button>
+
+				<button class="button" onclick="calculate('value', 7)">7</button>
+				<button class="button" onclick="calculate('value', 8)">8</button>
+				<button class="button" onclick="calculate('value', 9)">9</button>
+				<button class="button" onclick="calculate('action', '-')">-</button>
+
+				<button class="button" onclick="calculate('value', 4)">4</button>
+				<button class="button" onclick="calculate('value', 5)">5</button>
+				<button class="button" onclick="calculate('value', 6)">6</button>
+				<button class="button" onclick="calculate('action', '+')">+</button>
+
+				<button class="button" onclick="calculate('value', 1)">1</button>
+				<button class="button" onclick="calculate('value', 2)">2</button>
+				<button class="button" onclick="calculate('value', 3)">3</button>
+				<button id="button_equal" onclick="calculate('action', '=')">=</button>
+
+				<button id="button_zero" onclick="calculate('value', 0)">0</button>
+				<button class="button" onclick="calculate('action', '.')">.</button>
+				
+			</div>
+			
+		</div>
+		
+	</div>
+
+	<script type="text/javascript">
+		function calculate(type, value) {
+			
+			if(type === 'action') {
+
+				if(value === 'c') {
+					// clear the result
+					document.getElementById("result").value = ""
+				}
+
+				if(value === '+' || value === '-'  || value === '/' || value === '*' || value === '.') {
+					document.getElementById("result").value += value
+				}
+
+				if(value === '=') {
+					var input_value = eval(document.getElementById("result").value)
+					document.getElementById("result").value = input_value
+				}
+
+			} else if(type === 'value') {
+				// concatenation
+				document.getElementById("result").value += value
+			}
+		}
+
+	</script>
+</body>
+</html>
